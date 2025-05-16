@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- SEO & Open Graph Meta -->
+  <meta name="description" content="Aditya Kashyap - Sales Coordinator & Data Analyst. Transforming data into actionable insights and innovative sales strategies at Sea Linkers Pvt. Ltd." />
+  <meta name="keywords" content="Aditya Kashyap, Sales Coordinator, Data Analyst, Dashboard, Tableau, Power BI, Excel Automation, PWA" />
+  <meta property="og:title" content="Aditya Kashyap | Sales Coordinator & Data Analyst" />
+  <meta property="og:description" content="Transforming data into actionable insights and innovative sales strategies at Sea Linkers Pvt. Ltd." />
+  <meta property="og:image" content="your-image-url-here" />
+  <meta property="og:type" content="website" />
+  <link rel="manifest" href="manifest.json" />
+
+  <title>Aditya Kashyap | Sales Coordinator & Data Analyst</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* CSS Variables for Dark Mode */
+    :root {
+      --primary: #2563eb;
+      --secondary: #06b6d4;
+      --accent: #38bdf8;
+      --background: #0f172a;
+      --subtle: #1e293b;
+      --text: #f8fafc;
+      --light: #dbeafe;
+      --fade: #94a3b8;
+    }
+    /* Variables for Light Mode */
+    body.light-mode {
+      --primary: #2563eb;
+      --secondary: #06b6d4;
+      --accent: #38bdf8;
+      --background: #f8f8f8;
+      --subtle: #e2e8f0;
+      --text: #1f2937;
+      --light: #cbd5e0;
+      --fade: #6b7280;
+    }
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Base Styles */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: none; /* Hide default cursor to use our custom one */
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    a:hover {
+      color: var(--secondary);
+      transform: translateY(-3px);
+    }
+    /* Progress Bar */
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--accent);
+      width: 0%;
+      z-index: 10000;
+      transition: width 0.1s ease-out;
+    }
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      z-index: 10000;
+    }
+    /* Header/Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    #hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      object-fit: cover;
+      transition: transform 0.2s ease-out;
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--light);
+      margin-bottom: 0.5rem;
+    }
+    /* Dynamic Greeting */
+    #greeting {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    /* Navigation */
+    nav {
+      background: var(--subtle);
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      transition: background 0.3s ease;
+    }
+    nav a {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+    }
+    .nav-toggle,
+    .resume-link,
+    .voice-button {
+      background: transparent;
+      border: 2px solid var(--accent);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .nav-toggle:hover,
+    .resume-link:hover,
+    .voice-button:hover {
+      background: var(--accent);
+      color: var(--background);
+      transform: translateY(-3px);
+    }
+    .nav-right {
+      margin-left: auto;
+      margin-right: 20px;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    /* Main & Section Styles */
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      margin: 3rem 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: inline-block;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.3rem;
+    }
+    /* List Styling */
+    ul {
+      list-style: disc inside;
+      margin-left: 1rem;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    /* Tableau Visualization Container */
+    .tableau-container {
+      position: relative;
+      padding-bottom: 75%;
+      height: 0;
+      overflow: hidden;
+      background: var(--subtle);
+      border-radius: 8px;
+      box-shadow: 0 0 10px var(--primary);
+    }
+    .tableau-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      loading: lazy;
+    }
+    /* Testimonials Slider */
+    .testimonial-slider {
+      position: relative;
+      overflow: hidden;
+      height: 150px;
+      margin-top: 1rem;
+    }
+    .testimonial {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      text-align: center;
+      font-style: italic;
+      padding: 0 20px;
+    }
+    .testimonial.active {
+      opacity: 1;
+      position: relative;
+    }
+    /* Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin-top: 1rem;
+    }
+    .contact-form label {
+      font-weight: 600;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.5rem;
+      border: 1px solid var(--subtle);
+      border-radius: 4px;
+      background: var(--background);
+      color: var(--text);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .contact-form button {
+      background: var(--accent);
+      border: none;
+      padding: 0.6rem;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: var(--secondary);
+    }
+    /* Footer Styling */
+    footer {
+      background: var(--subtle);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--fade);
+      margin-top: 3rem;
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      nav a {
+        font-size: 0.8rem;
+      }
+      .nav-right {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  </style>
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Aditya Kashyap",
+      "jobTitle": "Sales Coordinator & Data Analyst",
+      "url": "https://yourwebsite.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/aditya-kashyap-235703288"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Sea Linkers Pvt. Ltd."
+      }
+    }
+  </script>
+</head>
+<body class="dark-mode">
+  <!-- Scroll Progress Bar -->
+  <div id="progressBar"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- HERO SECTION -->
+  <header class="hero" role="banner">
+    <video autoplay muted loop playsinline id="hero-video">
+      <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Aditya Kashyap</h1>
+      <!-- Dynamic Greeting -->
+      
+      <p>Sales Coordinator &amp; Data Analyst</p>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav aria-label="Main Navigation">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#visualizations">Visualizations</a>
+    <a href="#usecases">Use Cases</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <div class="nav-right">
+      <button class="nav-toggle" id="modeToggle" aria-label="Toggle Light/Dark Mode">Light Mode</button>
+      <button class="voice-button" id="voiceSearch" aria-label="Activate Voice Search"></button>
+      <a class="resume-link" href="resume.pdf" download aria-label="Download Resume">Resume</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ABOUT SECTION -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">About Me</h2>
+      <p>
+        I’m Aditya Kashyap, a dynamic Sales Coordinator and Data Analyst at Sea Linkers Pvt. Ltd. I integrate innovative sales strategies with data‑driven insights to enhance operational efficiency and inform business decisions.
+        My passion lies at the intersection of creative sales coordination and robust analytics, empowering businesses to harness data for sustainable growth.
+      </p>
+      <p><a href="resume.pdf" class="resume-link" download>Download My Resume</a></p>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 class="section-title" id="projects-title">Projects</h2>
+      <ul>
+        <li><strong>KPI Dashboard:</strong> Tracking core performance metrics with Power BI to drive actionable insights.</li>
+        <li><strong>Freight Cost Analysis:</strong> A comprehensive Tableau dashboard to monitor client‑specific logistics and freight expenses.</li>
+        <li><strong>Excel Automation:</strong> Streamlining quotation and invoice processes using advanced Excel techniques and VBA.</li>
+      </ul>
+    </section>
+
+    <!-- DATA VISUALIZATIONS SECTION -->
+    <section id="visualizations" aria-labelledby="visualizations-title">
+      <h2 class="section-title" id="visualizations-title">Data Visualizations</h2>
+      <p>Explore my interactive Tableau project showcasing client‑wise freight cost insights:</p>
+      <div class="tableau-container">
+        <iframe src="https://public.tableau.com/app/profile/aditya.kashyap7223/viz/ClientWiseFreightCosts/TopClients?publish=yes" allowfullscreen title="Client Wise Freight Costs"></iframe>
+      </div>
+    </section>
+
+    <!-- USE CASES SECTION -->
+    <section id="usecases" aria-labelledby="usecases-title">
+      <h2 class="section-title" id="usecases-title">Use Cases</h2>
+      <ul>
+        <li>Export Sales Monitoring to streamline day‑to‑day operations.</li>
+        <li>Client &amp; Freight Analysis for cost optimization and budgeting.</li>
+        <li>Automated Reporting for real‑time, dynamic sales insights.</li>
+        <li>Interactive Dashboards that empower management decision‑making.</li>
+        <li>Process Automation using advanced Excel and VBA techniques.</li>
+      </ul>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" aria-labelledby="testimonials-title">
+      <h2 class="section-title" id="testimonials-title">Testimonials</h2>
+      <div class="testimonial-slider">
+        <div class="testimonial active">
+          "Aditya's blend of sales expertise and deep data insights transformed our operations. His innovative approach drives truly informed decision-making." – Sales Manager
+        </div>
+        <div class="testimonial">
+          "Working with Aditya meant clear, analytical insights that boosted our performance and efficiency." – Client Representative
+        </div>
+        <div class="testimonial">
+          "His ability to merge creative strategy with precise data analysis is unmatched." – Senior Executive
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section id="blog" aria-labelledby="blog-title">
+      <h2 class="section-title" id="blog-title">Blog &amp; Insights</h2>
+      <p>Coming soon: In‑depth articles and guides on modern sales strategies, data analytics best practices, and innovative solutions bridging business and technology.</p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">Contact</h2>
+      <p>Email: <a href="mailto:aditkashyap442@gmail.com">aditkashyap442@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/aditya-kashyap-235703288" target="_blank" rel="noopener noreferrer">linkedin.com/in/aditya-kashyap-235703288</a></p>
+      <form class="contact-form" id="contactForm" aria-label="Contact Form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Your Name" />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" />
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required placeholder="Your message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Aditya Kashyap. All rights reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    /* ---------- Smooth Parallax Scroll with requestAnimationFrame ---------- */
+    let latestKnownScrollY = 0, ticking = false;
+    function onScroll() {
+      latestKnownScrollY = window.pageYOffset;
+      requestTick();
+      updateProgressBar();
+    }
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(update);
+      }
+      ticking = true;
+    }
+    function update() {
+      const scrollPos = latestKnownScrollY;
+      const heroVideo = document.getElementById('hero-video');
+      heroVideo.style.transform = `translate(-50%, calc(-50% + ${scrollPos * 0.5}px))`;
+      ticking = false;
+    }
+    window.addEventListener("scroll", onScroll, false);
+
+    /* ---------- Scroll Progress Bar ---------- */
+    function updateProgressBar() {
+      const scrollPos = window.pageYOffset;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollPos / docHeight) * 100;
+      document.getElementById('progressBar').style.width = scrollPercent + '%';
+    }
+
+    /* ---------- Fade-in Sections with IntersectionObserver ---------- */
+    const sections = document.querySelectorAll('section');
+    const observerOptions = { threshold: 0.15 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    sections.forEach(section => observer.observe(section));
+
+    /* ---------- Testimonial Slider ---------- */
+    const testimonials = document.querySelectorAll('.testimonial');
+    let currentTestimonial = 0;
+    setInterval(() => {
+      testimonials[currentTestimonial].classList.remove('active');
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      testimonials[currentTestimonial].classList.add('active');
+    }, 5000);
+
+    /* ---------- Dark/Light Mode Toggle ---------- */
+    const modeToggle = document.getElementById('modeToggle');
+    modeToggle.addEventListener('click', function() {
+      if (document.body.classList.contains('light-mode')) {
+        document.body.classList.remove('light-mode');
+        modeToggle.textContent = 'Light Mode';
+      } else {
+        document.body.classList.add('light-mode');
+        modeToggle.textContent = 'Dark Mode';
+      }
+    });
+
+    /* ---------- Voice Search with Web Speech API ---------- */
+    const voiceSearchBtn = document.getElementById('voiceSearch');
+    voiceSearchBtn.addEventListener('click', function() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert('Voice recognition is not supported in your browser.');
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recognition.start();
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        alert('You said: ' + transcript);
+        // Here you could integrate further search/filter functionality
+      };
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error: ' + event.error);
+      };
+    });
+
+    /* ---------- Dynamic Time-Based Greeting ---------- */
+    function updateGreeting() {
+      const greetingEl = document.getElementById('greeting');
+      const now = new Date();
+      const hour = now.getHours();
+      let greetingText = 'Welcome';
+      if(hour < 12) {
+        greetingText = 'Good Morning';
+      } else if(hour < 18) {
+        greetingText = 'Good Afternoon';
+      } else {
+        greetingText = 'Good Evening';
+      }
+      greetingEl.textContent = greetingText;
+    }
+    document.addEventListener('DOMContentLoaded', updateGreeting);
+
+    /* ---------- Simulated Contact Form Submission ---------- */
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! I will get back to you soon.');
+      contactForm.reset();
+    });
+
+    /* ---------- Service Worker Registration for PWA ---------- */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful: ', registration.scope);
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+
+    /* ---------- Custom Cursor Implementation ---------- */
+    const customCursor = document.getElementById('customCursor');
+    let cursorX = 0, cursorY = 0;
+    document.addEventListener('mousemove', function(e) {
+      cursorX = e.clientX;
+      cursorY = e.clientY;
+      requestAnimationFrame(updateCursor);
+    });
+    function updateCursor() {
+      customCursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+    }
+  </script>
+</body>
+</html>
